@@ -8,3 +8,13 @@ awesome-client 'n = require("awful"); n.tag.viewonly(tag[1][3])'
 
 
 awesome-client 'n = require("awful"); n.tag.viewonly(tag[1]["3"])'
+
+
+
+# this is the shell script that I need to run
+cd ~/projects/smartlift-node-monitor
+npm install
+typings install
+./node_modules/.bin/electron-rebuild
+npm run build
+electron app ws://zuik.dnsalias.net:8095
