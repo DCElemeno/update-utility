@@ -13,6 +13,9 @@ const {app, BrowserWindow} = require('electron')
   
     // Open the DevTools.
     //win.webContents.openDevTools()
+
+    // get rid of top menu
+    win.setMenu(null)
   
     // Emitted when the window is closed.
     win.on('closed', () => {

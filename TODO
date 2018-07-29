@@ -1,14 +1,5 @@
-1. startup splash screen
-2. UI - top bar
-3. autolaunch app
-4. create update page
-5. make button inside current app that can switch workspace
-
-
 # to switch tags
 awesome-client 'n = require("awful"); n.tag.viewonly(root.tags()[1])'
-
-
 
 # this is the shell script that I need to run
 cd ~/projects/smartlift-node-monitor
@@ -17,3 +8,14 @@ typings install
 ./node_modules/.bin/electron-rebuild
 npm run build
 electron app ws://zuik.dnsalias.net:8095
+
+########################
+##  NEEDS TO BE DONE  ##
+########################
+
+DONE - 1. Add in nm-applet
+2. Add button in checkfast that links to workspace 2
+3. Remove electron menuy bar (https://discuss.atom.io/t/how-to-disable-the-default-menubar/17722)
+4. Create shell script -> Git pull + rebuild
+5. Customize splash screen for bootup
+6. Change the word 'Node' to 'Sling'
