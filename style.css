@@ -14,7 +14,7 @@ h1 {
     font-size: 16px; }
 
 #status, h1 { margin-left: 30px; }
-#status { 
+#status, #placeholder { 
     margin: 10px 0 0 15px;
     padding-top:7px;
     color:white; }
@@ -83,7 +83,7 @@ aside {
             width: 230px;
             height: 104px;
             margin: 0 auto;
-            background: url("checkfast-logo.png") no-repeat;
+            background: url("assets/checkfast-logo.png") no-repeat;
         }
 
     .notifications {
@@ -101,3 +101,16 @@ footer {
     background: #d8e4f1;
     position: fixed;
     bottom: 0; }
+
+    .logo-slingmax {
+        background: url("assets/logo-slingmax.png") no-repeat;
+        width: 132px;
+        height: 31px;
+        text-indent: -9999px;
+        overflow: hidden;
+        margin-left: 27%;
+        position:fixed;
+        bottom:14px;
+        vertical-align: middle; 
+        display:flex; 
+        justify-content: center;}

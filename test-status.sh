@@ -1,9 +1,6 @@
 #!/bin/bash
 
 cd ~/projects/smartlift-node-monitor
-#git status -sb
-
-#git diff origin/working-fixing..working-fixing^^
 
 UPSTREAM=${1:-'@{u}'} 
 LOCAL=$(git rev-parse @)
