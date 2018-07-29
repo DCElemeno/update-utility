@@ -57,3 +57,32 @@ function updateApp() {
           getDroidOutput().style.background = "DarkGray";
     });
 };
+
+
+// Function to update repo
+function backToApp() {
+    const process = require('child_process');   // The power of Node.JS
+
+    // var ls = process.spawn('ls', ['-l']);
+    var ls = process.spawn('./toApp.sh');
+    // var ls = process.spawn('./shell-scripts/check-for-updates.sh');
+
+    ls.stdout.on('data', function (data) {
+      // console.log('stdout: <' + data+'> ');
+          // appendToDroidOutput(data);
+      appendToDroidOutput(data+'\n');
+    });
+
+    ls.stderr.on('data', function (data) {
+      console.log('stderr: ' + data);
+    });
+
+    ls.on('close', function (code) {
+      // console.log('child process exited with code ' + code);
+          if (code == 0)
+         setStatus('Finished checking for updates.');
+          else
+         setStatus('Error : code ' + code);
+          getDroidOutput().style.background = "DarkGray";
+    });
+};
