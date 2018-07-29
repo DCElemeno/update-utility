@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Update Utility</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <!-- container for the majority of content -->
+    <div class="main-column">
+
+        <!-- top bar appearance -->
+        <header>
+            <ul class="header-tabs">
+                <li>INVENTORY</li>
+                <li>LIFT</li>
+                <li>ALERTS</li>
+                <li>SETTINGS</li>
+            </ul>
+        </header>
+
+        <!-- Ask if they would like to update -->
+        <br><br><h1>Update Application</h1>
+
+        <!-- where console output is echoed -->
+        <textarea rows="20" cols="90" id="droid-output" disabled="true"></textarea>
+
+        <!-- update button -->
+        <button onclick="updateApp()">Update</button>
+
+        <!-- script to handle stdout -->
+        <script src="./gui-funct.js"></script>
+        <script>
+
+            // GLUE to the screen
+            function getDroidOutput() { return document.getElementById("droid-output");  };
+            function getStatus()      { return document.getElementById("status");  };
+            // End of GLUE
+
+            checkForUpdates();
+        </script>
+
+        <!-- bottom bar representation -->
+        <footer></footer>
+
+    </div>
+
+    <!-- sidebar -->
+    <aside>
+        
+        <!-- checkfast logo -->
+        <div class="logo-holder"></div>
+
+        <!-- notifications bar-->
+        <div class="notifications">
+            Latest Status
+        </div>
+
+        <!-- actual notifications -->
+        <div id="status"></div>
+
+    </aside>
+
+  </body>
+</html>
