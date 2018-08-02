@@ -1,21 +1,14 @@
-# to switch tags
-awesome-client 'n = require("awful"); n.tag.viewonly(root.tags()[1])'
-
-# this is the shell script that I need to run
-cd ~/projects/smartlift-node-monitor
-npm install
-typings install
-./node_modules/.bin/electron-rebuild
-npm run build
-electron app ws://zuik.dnsalias.net:8095
-
 ########################
 ##  NEEDS TO BE DONE  ##
 ########################
 
-DONE - 1. Add in nm-applet
-2. Add button in checkfast that links to workspace 2
-3. Remove electron menuy bar (https://discuss.atom.io/t/how-to-disable-the-default-menubar/17722)
-4. Create shell script -> Git pull + rebuild
-5. Customize splash screen for bootup
-6. Change the word 'Node' to 'Sling'
+1.  Remove electron menu bar (https://discuss.atom.io/t/how-to-disable-the-default-menubar/17722)
+2.  Customize splash screen for bootup
+3.  Change the word 'Node' to 'Sling'
+4.  Improve bootup experience
+5.  Change UI to somehow indicate that the update script also fixes db sync issues
+6.  Revise top bar, choose more UI friendly widgets - remove processes icons
+7.  Fine tune UI so switching workspaces appears more seamless
+8.  On startup -> make it more clear that the application is loading
+9.  Lock down hotkeys
+10. Change Awesomewm help menu
