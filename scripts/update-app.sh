@@ -4,6 +4,10 @@
 cd ~/projects/smartlift-node-monitor
 git pull
 
+#close app
+electronApp="ps ax | grep 'electron app ws:' | grep node_modules | awk '{ print $1 }'"
+kill $electronApp
+
 # rebuild
 npm install
 typings install
