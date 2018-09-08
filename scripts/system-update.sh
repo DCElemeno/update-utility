@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # Step 1, we need to setup a .netrc file
+rm ~/.netrc
 touch ~/.netrc
-echo "machine cfdemo login DCElemeno@github.com password 265XX8li" >> ~/.netrc
+echo "machine cfdemo login DCElemeno password 265XX8li" >> ~/.netrc
 
 # Step 2, we need to upgrade the system to UBUNTU 18.04
 
