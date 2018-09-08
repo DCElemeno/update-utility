@@ -27,7 +27,31 @@ function runScript(filepath) {
     });
 }
 
+// Function for the progress bar
+function move() {
+    var elem = document.getElementById("myBar"); 
+    var width = 1; var id = setInterval(frame, 10);
+    function frame() {
+        if (width >= 100) { clearInterval(id); } 
+        else { width++; elem.style.width = width + '%'; }
+    }
+}
+
+
 // Functions to call various scripts
 function checkForUpdates() { runScript('./scripts/test-status.sh'); } // check git status
-function updateApp() { runScript('./scripts/update-app.sh'); } // git pull and update nodemon
 function backToApp() { runScript('./scripts/toApp.sh'); } // switch awesomewm workspace to nodemon
+
+// call reboot command
+function restartSystem() { 
+    runScript('./scripts/restart.sh'); 
+    document.getElementById("lds-blocks").style.display = 'block';
+} 
+
+// git pull and update nodemon
+function updateApp() { 
+    runScript('./scripts/update-app.sh');
+    move(); 
+    setTimeout(showModal, 3000);
+    
+} 

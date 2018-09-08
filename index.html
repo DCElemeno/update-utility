@@ -3,8 +3,178 @@
   <head>
     <title>Update Utility</title>
     <link rel="stylesheet" href="style.css">
+    <style type="text/css">
+
+        #popup {
+            position: absolute;
+            height:275px;
+            margin-left:23%;
+            margin-top:200px;
+            z-index:9999;
+            background: #ecf3fb;
+            border-radius: 5px;
+            width: 250px;
+            padding:50px;
+        }
+
+        #overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(43, 55, 70, 0.8);
+            z-index: 10;
+        }
+
+        .empty-block {
+            width: 200px;
+            padding: 15px;
+            font-size: 16px;
+            background: white;
+        }
+
+        .btn-close {
+            outline:none;
+            float: left;
+            position: relative;
+            right: 0;
+            top: 0;
+            margin: 0 7px 0 0;
+            position: absolute;
+            right: 34px;
+            top: 27px;
+            width: 20px;
+            height: 20px;
+            padding: 0;
+            background: none;
+            border: none;
+            text-indent: -9999px;
+            overflow: hidden;
+            cursor: pointer; }
+            
+        .btn-close:hover:before, .btn-close:hover:after {
+            border-color: #3485e6; 
+        }
+
+        .btn-close:active:before, .btn-close:active:after {
+            border-color: #2a68b2; 
+        }
+         
+        .btn-close:before, .btn-close:after {
+            content: '';
+            position: absolute;
+            left: -3px;
+            top: 9px;
+            border: solid #518ace;
+            border-width: 3px 0 0;
+            width: 26px;
+            height: 0;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg); 
+        }
+        
+        .btn-close:after {
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg); 
+        }
+
+        #popup {}
+
+        #myProgress {
+            width: 100%;            
+            background: #ecf3fb;
+        }
+        #myBar {
+            width: 0%;
+            height: 30px;
+            background: #518ace;
+        }
+
+
+        @keyframes lds-blocks {
+            0% { background: #518ace; }
+            12.5% { background: #518ace; }
+            12.625% { background: #d5d5d5; }
+            100% { background: #d5d5d5; }
+          }
+          @-webkit-keyframes lds-blocks {
+            0% { background: #518ace; }
+            12.5% { background: #518ace; }
+            12.625% { background: #d5d5d5; }
+            100% { background: #d5d5d5; }
+          }
+          .lds-blocks { position: absolute; }
+          .lds-blocks div {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #d5d5d5;
+            -webkit-animation: lds-blocks 1s linear infinite;
+            animation: lds-blocks 1s linear infinite;
+          }
+          .lds-blocks {
+            width: 31px !important;
+            height: 31px !important;
+            -webkit-transform: 
+              translate(-15.5px, -15.5px) 
+              scale(0.155) 
+              translate(15.5px, 15.5px);
+            transform: 
+              translate(-15.5px, -15.5px) 
+              scale(0.155) 
+              translate(15.5px, 15.5px);
+          }
+    </style>
   </head>
   <body>
+
+    <!-- script to handle stdout -->
+    <script src="./gui-funct.js"></script>
+    <script>
+
+        // GLUE to the screen
+        function getDroidOutput() { return document.getElementById("droid-output");  };
+        function getStatus()      { return document.getElementById("status");  };
+
+        function hideModal()      { return document.getElementById("popup-holder").style.display = 'none';  };
+        function showModal()      { return document.getElementById("popup-holder").style.display = 'block';  };
+        // End of GLUE
+
+        checkForUpdates();
+    </script>
+
+    <!-- MODAL -->
+    <div id="popup-holder" style="display:none">
+        <div id="overlay"></div>
+        <div id="popup">
+
+            <!-- Close button-->
+            <button class="btn-close"  onclick="hideModal()">close</button><br><br>
+
+            <!-- container for message-->
+            <div class="empty-block" style="height:150px;">
+                <p>System Updates will be applied. <br><br> A Restart is required for changes to take effect </p>
+                
+            </div>
+
+            <br><br>
+
+            <!--progress thing -->
+            <div id="lds-blocks" class="lds-blocks" style="100%;height:100%;display: none;">
+                <div style="left:38px; top:38px; animation-delay:0s"></div>
+                <div style="left:80px; top:38px; animation-delay:0.125s"></div>
+                <div style="left:122px;top:38px; animation-delay:0.25s"></div>
+                <div style="left:38px; top:80px; animation-delay:0.875s"></div>
+                <div style="left:122px;top:80px; animation-delay:0.375s"></div>
+                <div style="left:38px; top:122px;animation-delay:0.75s"></div>
+                <div style="left:80px; top:122px;animation-delay:0.625s"></div>
+                <div style="left:122px;top:122px;animation-delay:0.5s"></div>
+            </div>
+            <button class="update-button" onclick="restartSystem()">Restart and Apply</button>
+        </div>
+    </div>
+
 
     <!-- container for the majority of content -->
     <div class="main-column">
@@ -25,23 +195,21 @@
         <!-- where console output is echoed -->
         <textarea rows="20" cols="90" id="droid-output" disabled="true"></textarea>
 
+        <!-- container for progress bar -->       
+        <div style="width:532px; margin-left:30px;">
+            <div id="myProgress">
+                <div id="myBar"></div>
+            </div>
+        </div>
+
         <!-- update button -->
         <br><button class="update-button" onclick="updateApp()">Update</button>
 
         <!-- update button -->
         <br><br><br><button class="update-button" onclick="backToApp()">Done</button>
 
-        <!-- script to handle stdout -->
-        <script src="./gui-funct.js"></script>
-        <script>
-
-            // GLUE to the screen
-            function getDroidOutput() { return document.getElementById("droid-output");  };
-            function getStatus()      { return document.getElementById("status");  };
-            // End of GLUE
-
-            checkForUpdates();
-        </script>
+        <!-- show modal button -->
+        <!--<br><br><br><button class="update-button" onclick="showModal()">Show Modal</button>-->        
 
         <!-- bottom bar representation -->
         <footer>
